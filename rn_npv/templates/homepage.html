@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Страница расчета</title>
+  </head>
+  <body>
+    <form method="post" action="{% url 'rn:npv' %}">
+      {% csrf_token %}
+      <table>
+        <tr>
+          <th><label for="id_year">Год:</label></th>
+          <td>
+            <input id="id_year" name="year" type="integer" value="2050" required />
+          </td>
+        </tr>
+      </table>
+      <table>
+        <tr>
+          <th><label for="id_k">Коэффициент:</label></th>
+          <td>
+            <input id="id_k" name="k" type="float" value="0.2" required />
+          </td>
+        </tr>
+      </table>
+      <button type="submit" class="btn btn-primary">Расчет</button>
+    </form>
+    Результат:
+
+    <h1>
+      {{ last_npv.npv_result }}
+    </h1>
+
+  </body>
+</html>
